@@ -1,0 +1,8 @@
+create database cargoproject;
+use cargoproject;
+create table CUSTOMER (CUST_ID varchar(25) primary key not null , C_NAME varchar(25) not null, ADDRESS varchar(25) not null, PHONE varchar(15) not null, EMAIL varchar(35) not null);
+ create table EMPLOYEE (ssn varchar(25) primary key not null, name varchar(25) not null,EMAIL varchar(20) not null ,PHONE varchar(15),GENDER char(1) not null,BLOODGROUP varchar(5) not null);
+  create table  login ( ID varchar(25)not null,PASSWORD varchar(25) not null, foreign key(ID) references employee(ssn) on delete cascade);
+ create table CARGO (CARGO_ID varchar(25) primary key not null ,CUST_ID varchar(25) not null,WEIGHT int not null,D_PERSON varchar(25) not null,DATE_OF_SHIPPMENT date not null,foreign key(cust_id) references customer(cust_id) on delete cascade);
+ create table BILLING ( CARGO_ID varchar(25)not null ,SENDER varchar(25) not null , RECIEPANT_NAME varchar(25) not null , ADDRESS varchar(25) not null , AMOUNT float not null ,BILLING_DATE date not null , foreign key(cargo_id) references cargo(cargo_id) on delete cascade);
+ create table  TRANSPORT( CARGO_ID varchar(25) not null ,CUST_ID varchar(25) not null ,type_of_v varchar(25) not null ,DATE_OF_SHIPPMENT date not null ,DATE_OF_RECEIVED date not null, foreign key(cargo_id) references cargo(cargo_id) on delete cascade, foreign key(cust_id)references customer(cust_id) on delete cascade);
